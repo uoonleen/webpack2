@@ -10,6 +10,14 @@ const config = {
      'build' : output folder name
     */
     filename: 'bundle.js'
+  },
+  module: {
+    rules: [
+      {
+        use: 'babel-loader',
+        test: /\.js$/, // babel will get only *.js files
+      }
+    ]
   }
 };
 /* -> whenever webpack runs, save the file, call it bundle.js inside of a path of our project
