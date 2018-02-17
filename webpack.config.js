@@ -15,7 +15,15 @@ const config = {
     rules: [
       {
         use: 'babel-loader',
-        test: /\.js$/, // babel will get only *.js files
+        test: /\.js$/ // babel will get only *.js files
+      },
+      {
+        use: ['style-loader', 'css-loader'], // the loader is loaded by reverse border
+        /*
+          css-loader : this makes CSS codes to String and put it in JS
+          style-loader : this takes JS codes from css-loader and make it style tag, put it into HTML
+        */
+        test: /\.css$/
       }
     ]
   }
