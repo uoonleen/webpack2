@@ -1,5 +1,6 @@
 // below path depends on node.js and it takes the path of current directory
 const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const config = {
   entry: './src/index.js',
@@ -18,7 +19,10 @@ const config = {
         test: /\.js$/ // babel will get only *.js files
       },
       {
-        use: ['style-loader', 'css-loader'], // the loader is loaded by reverse border
+        loader: ExtractTextPlugin.extract({
+          loader: 'css-loader'
+        }),
+        // use: ['style-loader', 'css-loader'], // the loader is loaded by reverse border
         /*
           css-loader : this makes CSS codes to String and put it in JS
           style-loader : this takes JS codes from css-loader and make it style tag, put it into HTML
@@ -26,7 +30,10 @@ const config = {
         test: /\.css$/
       }
     ]
-  }
+  },
+  plugins: [
+    new ExtractTextPlugin('style.css')
+  ]
 };
 /* -> whenever webpack runs, save the file, call it bundle.js inside of a path of our project
     directory in a file called build
